@@ -62,6 +62,7 @@ void loop() {
             lcd.clear();
             lcd.setCursor(0, 0);
 
+            /*
             if (match) 
             {
                 digitalWrite(LED_ACCESS_PIN, HIGH);
@@ -71,7 +72,7 @@ void loop() {
             {
                 digitalWrite(LED_DENIED_PIN, HIGH);
                 lcd.print(" Access denied  ");
-            }
+            }*/
 
             mfrc522.PICC_HaltA();
             mfrc522.PCD_StopCrypto1();
@@ -79,6 +80,20 @@ void loop() {
             delay(3000);
             reset_state();
         }
+        else //NUEVA IMPLEMENTACION 
+        {
+            match=false;
+        }
+        if (match) 
+            {
+                digitalWrite(LED_ACCESS_PIN, HIGH);
+                lcd.print("Authorized access");
+            }
+            else
+            {
+                digitalWrite(LED_DENIED_PIN, HIGH);
+                lcd.print(" Access denied  ");
+            }
     }
 }
 
